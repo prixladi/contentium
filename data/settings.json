@@ -1,0 +1,10 @@
+{
+    "metaDescription": "Personal blog of [Láďa](https://prixladi.vercel.app).",
+    "mainTitle": "Láďa | blog",
+    "mainDescription": "This is my personal blog where I write about things that come to my mind or interest me, mostly from tech industry. You can read more about me [on my personal site](https://prix.cz). This site was created using [Contentium](https://github.com/prixladi/contentium).",
+    "ogImageExtension": "png",
+    "ogUrl": "https://blog-prixladi.vercel.app",
+    "footer": "Copyright 2021 © [Láďa](mailto:contact@prixladi.cz)",
+    "autosearchTresholdCount": "100"
+}
+   

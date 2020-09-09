@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    h1 {
+        @apply text-4xl;
+        @apply lg:text-5xl;
+        @apply font-extrabold;
+        @apply pb-5;
+    }
+    h2 {
+        @apply text-2xl;
+        @apply lg:text-3xl;
+    }
+    h3 {
+        @apply text-xl;
+        @apply lg:text-2xl;
+    }
+    body {
+        @apply dark:bg-gray-800
+    }
+    p {
+        @apply text-lg;
+    }
+    .centered {
+        @apply max-w-3xl;
+        @apply m-auto;
+    }
+    .content {
+        @apply centered;
+        @apply flex-1;
+        @apply space-y-8;
+        @apply pt-10;
+        @apply md:pt-12;
+        @apply lg:pt-16;
+        @apply px-3;
+        @apply relative;
+        @apply min-h-screen;
+        @apply pb-32;
+    }
+    .footer {
+        @apply bottom-0;
+        @apply absolute;
+        @apply h-10;
+    }
+    .article-card-list {
+        @apply flex-1;
+        @apply space-y-8;
+    }
+    .article-card-heading {
+        @apply font-bold;
+    }
+    .link {
+        @apply text-red-600;
+    }
+    .link:hover {
+        @apply cursor-pointer;
+        @apply underline;
+    }
+    .back-to-link {
+        @apply font-extrabold;
+        @apply pb-3;
+        @apply md:pb-5;
+        @apply lg:pb-10;
+    } 
+    .article-metadata {
+        @apply font-thin;
+        @apply flex-1;
+    } 
+    .theme-switcher {
+        @apply h-12;
+        @apply w-12;
+        @apply text-4xl;
+        @apply float-right;
+    }
+    .text-search-wrapper {
+        @apply flex;
+        @apply items-center;
+        @apply rounded-full;
+    }
+    .text-search-input {
+        @apply rounded-l-full;
+        @apply w-full;
+        @apply py-4;
+        @apply px-6;
+        @apply leading-tight;
+        @apply focus:outline-none;
+        @apply dark:bg-gray-700;
+        @apply bg-gray-300;
+    }
+    .text-search-button {
+        @apply bg-blue-500;
+        @apply rounded-full;
+        @apply p-2;
+        @apply hover:bg-blue-400;
+        @apply focus:outline-none; 
+        @apply w-12;
+        @apply h-12;
+        @apply flex;
+        @apply items-center;
+        @apply justify-center;
+    }
+    .text-search-button-wrapper {
+        @apply p-4;
+        @apply pr-0; 
+    }
+    .markdown {
+        @apply prose;
+        @apply prose-sm; 
+        @apply sm:prose;
+        @apply lg:prose-lg; 
+        @apply prose-red;
+        @apply dark:text-white;
+        @apply max-w-none;
+    }  
+    .markdown h1, 
+    .markdown h2, 
+    .markdown h3,
+    .markdown li::before {
+        @apply dark:text-white;
+    }
+    .markdown strong {
+        @apply dark:text-yellow-200;
+    }  
+    .markdown a:hover{
+        @apply no-underline;
+    }
+    .markdown code {
+        @apply rounded-md;
+        @apply p-1;
+        @apply bg-yellow-50;
+        @apply dark:bg-gray-300; 
+        @apply break-normal;
+    }
+    .markdown pre code {
+        @apply dark:bg-transparent; 
+    }
+    .markdown pre {
+        @apply dark:bg-gray-700; 
+    }
+    .markdown pre code {
+        @apply text-xs;
+        @apply md:text-sm;
+        @apply md:float-left;
+        @apply float-none;
+    }
+    .markdown code::before, .markdown code::after {
+        content: '';
+    }
+}

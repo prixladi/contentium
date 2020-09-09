@@ -1,0 +1,25 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "@next/next/no-document-import-in-page": "off",
+    "@next/next/no-img-element": "off",
+
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", ["sibling", "index"], "object"],
+        "pathGroups": [
+          { "pattern": "react", "group": "builtin" },
+          { "pattern": "next", "group": "builtin" },
+          { "pattern": "next/**", "group": "builtin" }
+        ],
+        "pathGroupsExcludedImportTypes": ["react", "next", "next/**"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
