@@ -3,7 +3,7 @@ import { ArticlePreview } from '@shared/api/models';
 import NextLink from 'next/link';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Markdown from './Markdown';
-import { format } from 'date-fns';
+import ArticleMetadata from './ArticleMetadata';
 
 type ArticleInList = Omit<ArticlePreview, 'brief'> & {
   brief?: MDXRemoteSerializeResult | null;
@@ -21,11 +21,7 @@ const ArticleCard: FC<Props> = ({ article }) => (
         {article.highlighted && ' ⭐'}
       </h2>
     </NextLink>
-    <div className="font-thin flex-1">
-      {article.author ? <div>👤 {article.author} ·</div> : ''}
-      {article.createdAt ? <div>📅 {format(new Date(article.createdAt), 'MMMM dd, yyyy')} ·</div> : ''}
-      {article.readingTimeInMinutes ? <div> 🕒 {article.readingTimeInMinutes} min read ·</div> : ''}
-    </div>
+    <ArticleMetadata article={article} />
     {article.brief && <Markdown content={article.brief} />}
   </div>
 );

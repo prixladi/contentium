@@ -22,20 +22,8 @@
     p {
         @apply text-lg;
     }
-    a {
-        @apply text-red-600;
-        @apply dark:text-red-500;
-        @apply underline;
-    }
-    a:hover {
-        @apply cursor-pointer;
-        @apply no-underline;
-    }
-}
-
-@layer components {
     .centered {
-        @apply max-w-xl;
+        @apply max-w-3xl;
         @apply m-auto;
     }
     .content {
@@ -48,7 +36,7 @@
         @apply px-3;
         @apply relative;
         @apply min-h-screen;
-        @apply pb-20;
+        @apply pb-32;
     }
     .footer {
         @apply bottom-0;
@@ -64,7 +52,6 @@
     }
     .link {
         @apply text-red-600;
-        @apply dark:text-red-500;
     }
     .link:hover {
         @apply cursor-pointer;
@@ -72,7 +59,37 @@
     }
     .back-to-link {
         @apply font-extrabold;
-        @apply pb-5;
+        @apply pb-3;
+        @apply md:pb-5;
         @apply lg:pb-10;
     } 
+    .article-metadata {
+        @apply font-thin;
+        @apply flex-1;
+    } 
+    .markdown {
+        @apply prose;
+        @apply prose-sm; 
+        @apply sm:prose;
+        @apply lg:prose-lg; 
+        @apply prose-red;
+    }  
+    .markdown a:hover{
+        @apply no-underline;
+    }
+    .markdown code {
+        @apply rounded-md;
+        @apply p-1;
+        @apply bg-yellow-50;
+        @apply dark:bg-gray-300; 
+    }
+    .markdown pre code {
+        @apply text-xs;
+        @apply md:text-sm;
+        @apply md:float-left;
+        @apply float-none;
+    }
+    .markdown code::before, .markdown code::after {
+        content: '';
+    }
 }

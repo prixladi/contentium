@@ -1,4 +1,3 @@
-const componentsMap = {
-};
+const componentsMap = {};
 
 export { componentsMap };

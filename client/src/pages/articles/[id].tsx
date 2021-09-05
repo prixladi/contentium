@@ -1,13 +1,16 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next';
-import { fetchArticle, fetchArticleByTitle, fetchArticles, fetchSettings } from '../../api';
-import React from 'react';
-import { Article, ArticlePreview } from '@shared/api/models';
+import { fetchArticle, fetchArticles, fetchSettings } from '../../api';
+import React, { useEffect } from 'react';
+import { ArticlePreview } from '@shared/api/models';
 import Head from 'next/head';
 import Content from '../../components/Content';
 import Markdown from '../../components/Markdown';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import NextLink from 'next/link';
+import ArticleMetadata from '../../components/ArticleMetadata';
+import Prism from 'prismjs';
+import { useCodeHighlights } from '../../hooks/useCodeHighlights';
 
 type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
   brief?: MDXRemoteSerializeResult | null;
@@ -18,6 +21,7 @@ type Props = {
   article: ArticleSerialized;
   settings: {
     title: string;
+    footer: MDXRemoteSerializeResult;
   };
 };
 
@@ -50,6 +54,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       },
       settings: {
         title: settings.mainTitle,
+        footer: await serialize(settings.mainFooter),
       },
     },
     revalidate: 60,
@@ -57,6 +62,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 const Home: NextPage<Props> = ({ article, settings }) => {
+  useCodeHighlights();
+
   return (
     <div>
       <Head>
@@ -70,11 +77,16 @@ const Home: NextPage<Props> = ({ article, settings }) => {
             <h3 className="link back-to-link">{settings.title}</h3>
           </NextLink>
           <h1>{article.title}</h1>
+          <ArticleMetadata article={article} />
         </header>
 
         <main>
           <Markdown content={article.content} />
         </main>
+
+        <footer className="footer">
+          <Markdown content={settings.footer} />
+        </footer>
       </Content>
     </div>
   );
