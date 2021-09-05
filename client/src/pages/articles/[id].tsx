@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import { fetchArticle, fetchArticles, fetchSettings } from '../../api';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ArticlePreview } from '@shared/api/models';
 import Head from 'next/head';
 import Content from '../../components/Content';
@@ -9,7 +9,6 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import NextLink from 'next/link';
 import ArticleMetadata from '../../components/ArticleMetadata';
-import Prism from 'prismjs';
 import { useCodeHighlights } from '../../hooks/useCodeHighlights';
 
 type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
@@ -31,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: articles.map((x) => ({
       params: { id: x.id },
     })),
-    fallback: false,
+    fallback: process.env.ACTION !== "export",
   };
 };
 
@@ -41,7 +40,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   if (!article) {
     return {
       notFound: true,
-      revalidate: 60,
+      revalidate: 20,
     };
   }
 
@@ -64,6 +63,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 const Home: NextPage<Props> = ({ article, settings }) => {
   useCodeHighlights();
 
+  if (!article) {
+    return null;
+  }
+  
   return (
     <div>
       <Head>
