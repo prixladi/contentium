@@ -2,11 +2,23 @@ type Settings = {
   [key: string]: string;
 };
 
-type Article = {
+type SettingsOptions = {
+  mainTitle: string;
+  mainDescription: string;
+};
+
+type ArticlePreview = {
   id: string;
   title: string;
-  brief: string | null;
+  keyworkText?: string | null;
+  brief?: string | null;
+  author?: string | null;
+  createdAt?: string | null;
+  readingTimeInMinutes?: number | null;
+};
+
+type Article = ArticlePreview & {
   content: string;
 };
 
-export { Settings, Article };
+export type { Settings, SettingsOptions, Article, ArticlePreview };

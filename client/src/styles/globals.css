@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    h1 {
+        @apply text-5xl;
+        @apply font-extrabold;
+    }
+    .article-card-heading {
+        @apply text-3xl;
+        @apply font-semibold;
+        @apply text-red-500;
+    }
+    .content {
+        @apply max-w-xl;
+        @apply m-auto;
+        @apply flex-1;
+        @apply space-y-8;
+        @apply pt-10;
+        @apply px-3;
+    }
+    .link:hover {
+        @apply cursor-pointer;
+        @apply underline;
+    }
+}

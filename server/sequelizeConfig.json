@@ -4,13 +4,15 @@
     "password": "secret",
     "database": "contentium_dev",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": true 
   },
   "production": {
     "username": "admin",
     "password": "secret",
     "database": "contendium",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": true 
   }
 }

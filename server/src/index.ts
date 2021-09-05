@@ -3,7 +3,7 @@ import AdminJSExpress from '@adminjs/express';
 import AdminJSSequelize from '@adminjs/sequelize';
 import express from 'express';
 import db from './db';
-import { articleAdminOptions } from './admin';
+import { articleAdminOptions, settingAdminOptions } from './admin';
 import { apiRouter } from './api';
 
 AdminJS.registerAdapter(AdminJSSequelize);
@@ -26,6 +26,7 @@ const run = async () => {
       },
       {
         resource: db.Setting,
+        options: settingAdminOptions
       },
     ],
   });

@@ -4,5 +4,6 @@ module.exports = {
   'env': 'development',  
   'config': 'sequelizeConfig.json',
   'migrations-path': path.resolve('src/db', 'migrations'),
+  'seeders-path': path.resolve('src/db', 'seeders'),
   'models-path': path.resolve('src/db', 'models'),
 }
