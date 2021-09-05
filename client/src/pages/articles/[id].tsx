@@ -10,6 +10,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import NextLink from 'next/link';
 import ArticleMetadata from '../../components/ArticleMetadata';
 import { useCodeHighlights } from '../../hooks/useCodeHighlights';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
 type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
   brief?: MDXRemoteSerializeResult | null;
@@ -30,7 +31,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: articles.map((x) => ({
       params: { id: x.id },
     })),
-    fallback: process.env.ACTION !== "export",
+    fallback: process.env.ACTION !== 'export',
   };
 };
 
@@ -64,9 +65,17 @@ const Home: NextPage<Props> = ({ article, settings }) => {
   useCodeHighlights();
 
   if (!article) {
-    return null;
+    return (
+      <div>
+        <Content>
+          <header>
+            <h1>Loading ...</h1>
+          </header>
+        </Content>
+      </div>
+    );
   }
-  
+
   return (
     <div>
       <Head>
@@ -76,6 +85,7 @@ const Home: NextPage<Props> = ({ article, settings }) => {
 
       <Content>
         <header>
+          <ThemeSwitch />
           <NextLink href={`/`}>
             <h3 className="link back-to-link">{settings.title}</h3>
           </NextLink>

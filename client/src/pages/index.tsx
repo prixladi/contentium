@@ -8,6 +8,7 @@ import { fetchArticles, fetchSettings } from '../api';
 import React from 'react';
 import ArticleList from '../components/ArticleList';
 import Markdown from '../components/Markdown';
+import ThemeSwitch from '../components/ThemeSwitch';
 
 type Props = {
   articles: ArticleInList[];
@@ -54,6 +55,7 @@ const Home: NextPage<Props> = ({ articles, settings }) => {
 
       <Content>
         <header>
+          <ThemeSwitch />
           <h1>{settings.title}</h1>
           <Markdown content={settings.description} />
         </header>

@@ -67,12 +67,26 @@
         @apply font-thin;
         @apply flex-1;
     } 
+    .theme-switcher {
+        @apply text-4xl;
+        @apply float-right;
+    }
     .markdown {
         @apply prose;
         @apply prose-sm; 
         @apply sm:prose;
         @apply lg:prose-lg; 
         @apply prose-red;
+        @apply dark:text-white;
+    }  
+    .markdown h1, 
+    .markdown h2, 
+    .markdown h3,
+    .markdown li::before {
+        @apply dark:text-white;
+    }
+    .markdown strong {
+        @apply dark:text-yellow-200;
     }  
     .markdown a:hover{
         @apply no-underline;
@@ -82,6 +96,12 @@
         @apply p-1;
         @apply bg-yellow-50;
         @apply dark:bg-gray-300; 
+    }
+    .markdown pre code {
+        @apply dark:bg-transparent; 
+    }
+    .markdown pre {
+        @apply dark:bg-gray-700; 
     }
     .markdown pre code {
         @apply text-xs;
