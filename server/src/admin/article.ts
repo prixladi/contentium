@@ -3,17 +3,14 @@ import { ResourceOptions } from 'adminjs';
 const options: ResourceOptions = {
   properties: {
     id: {
-      isVisible: {
-        list: false,
-        show: true,
-        edit: false,
-      },
+      isVisible: false
     },
     title: {
       isVisible: {
         list: true,
         show: true,
         edit: true,
+        filter: true,
       },
       isTitle: true,
     },
@@ -22,14 +19,26 @@ const options: ResourceOptions = {
         list: false,
         show: true,
         edit: true,
+        filter: true,
       },
       type: 'textarea',
+    },
+    highlighted: {
+      isVisible: {
+        list: true,
+        show: true,
+        edit: true,
+        filter: true,
+      },
+      isRequired: false,
+      type: 'boolean'
     },
     keyworkText: {
       isVisible: {
         list: false,
         show: true,
         edit: true,
+        filter: true,
       },
       type: 'textarea',
     },
@@ -38,6 +47,7 @@ const options: ResourceOptions = {
         list: false,
         show: true,
         edit: true,
+        filter: true,
       },
       type: 'textarea',
     },
@@ -46,6 +56,7 @@ const options: ResourceOptions = {
         list: true,
         show: true,
         edit: true,
+        filter: true,
       },
       type: 'datetime',
     },
@@ -54,6 +65,7 @@ const options: ResourceOptions = {
         list: true,
         show: true,
         edit: true,
+        filter: true,
       },
     },
     readingTimeInMinutes: {
@@ -61,8 +73,9 @@ const options: ResourceOptions = {
         list: true,
         show: true,
         edit: true,
+        filter: true,
       },
-      type: 'number',
+      type: 'float',
     },
   },
 } as ResourceOptions;

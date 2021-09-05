@@ -34,8 +34,22 @@ const fetchArticle = async (id: string): Promise<Article | null> => {
   return await res.json();
 };
 
+const fetchArticleByTitle = async (title: string): Promise<Article | null> => {
+  var res = await fetch(createUrl(`api/v1/articles/by-title/${title}`));
+
+  if (res.status == 404) {
+    return null;
+  }
+
+  if (!res.ok) {
+    throw new Error(`Unexpected status code ${res.status} - ${res.statusText}`);
+  }
+
+  return await res.json();
+};
+
 const createUrl = (path: string) => {
   return new URL(path, process.env.SERVER_URL).href;
 };
 
-export { fetchSettings, fetchArticles, fetchArticle };
+export { fetchSettings, fetchArticles, fetchArticle, fetchArticleByTitle };

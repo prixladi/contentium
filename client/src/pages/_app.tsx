@@ -5,7 +5,7 @@ import 'tailwindcss/tailwind.css';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <ThemeProvider defaultTheme="dark" attribute="class">
+  <ThemeProvider defaultTheme="light" attribute="class">
     <Component {...pageProps} />
   </ThemeProvider>
 );

@@ -4,19 +4,21 @@ type ArticleAttributes = {
   id: string;
   title: string;
   content: string;
-  keyworkText?: string | null,
+  highlighted: boolean;
+  keyworkText?: string | null;
   brief?: string | null;
   author?: string | null;
   createdAt?: string | null;
   readingTimeInMinutes?: number | null;
 };
 
-type UserCreationAttributes = Optional<ArticleAttributes, 'id'>;
+type ArticleCreationAttributes = Optional<ArticleAttributes, 'id'>;
 
-class Article extends Model<ArticleAttributes, UserCreationAttributes> implements ArticleAttributes {
+class Article extends Model<ArticleAttributes, ArticleCreationAttributes> implements ArticleAttributes {
   public id!: string;
   public title!: string;
   public content!: string;
+  public highlighted!:  boolean;
 
   public keyworkText!: string | null;
   public brief!: string | null;
@@ -36,9 +38,15 @@ export default (sequelize: Sequelize) => {
       title: {
         type: DataTypes.STRING(128),
         allowNull: false,
+        unique: true,
       },
       content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      highlighted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
       },
       keyworkText: {
@@ -51,18 +59,27 @@ export default (sequelize: Sequelize) => {
       },
       createdAt: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: true,
       },
       author: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
       },
       readingTimeInMinutes: {
         type: DataTypes.INTEGER,
-        allowNull: true
-      }
+        allowNull: true,
+      },
     },
     {
+      indexes: [
+        {
+          unique: true,
+          fields: ['title'],
+        },
+        {
+          fields: ['createdAt'],
+        },
+      ],
       sequelize,
       tableName: 'articles',
       timestamps: false,

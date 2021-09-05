@@ -1,17 +1,22 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Content from '../components/Content';
-import ArticleCard, { ArticleInList } from '../components/ArticleCard';
+import { ArticleInList } from '../components/ArticleCard';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { fetchArticles, fetchSettings } from '../api';
-import { componentsMap } from '../markdown';
+import React from 'react';
+import ArticleList from '../components/ArticleList';
+import Markdown from '../components/Markdown';
 
 type Props = {
   articles: ArticleInList[];
   settings: {
     title: string;
+    metaDesctiption: string;
+    autosearchTresholdCount: number;
     description: MDXRemoteSerializeResult;
+    footer: MDXRemoteSerializeResult;
   };
 };
 
@@ -29,28 +34,37 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       articles: articlesInList,
       settings: {
         title: settings.mainTitle,
-        description: await serialize('This is personal blog of **Ladislav Prix** where you can read about his life hobbies and so on.'),
+        metaDesctiption: settings.metaDescription,
+        autosearchTresholdCount: Number(settings.autosearchTresholdCount),
+        description: await serialize(settings.mainDescription),
+        footer: await serialize(settings.mainFooter),
       },
     },
     revalidate: 20,
   };
 };
 
-const Home: NextPage<Props> = (props) => {
+const Home: NextPage<Props> = ({ articles, settings }) => {
   return (
     <div>
       <Head>
-        <title>{props.settings.title}</title>
+        <title>{settings.title}</title>
+        <meta name="description" content={settings.metaDesctiption} />
       </Head>
 
       <Content>
-        <h1>{props.settings.title}</h1>
-        <MDXRemote {...props.settings.description} components={componentsMap} />
-        <div className="flex-1 space-y-2">
-          {props.articles.map((x) => (
-            <ArticleCard article={x} />
-          ))}
-        </div>
+        <header>
+          <h1>{settings.title}</h1>
+          <Markdown content={settings.description} />
+        </header>
+
+        <main>
+          <ArticleList autosearchTresholdCount={settings.autosearchTresholdCount} articles={articles} />
+        </main>
+
+        <footer className="footer">
+          <Markdown content={settings.footer} />
+        </footer>
       </Content>
     </div>
   );

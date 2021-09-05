@@ -5,11 +5,15 @@ type Settings = {
 type SettingsOptions = {
   mainTitle: string;
   mainDescription: string;
+  mainFooter: string;
+  metaDescription: string;
+  autosearchTresholdCount: string;
 };
 
 type ArticlePreview = {
   id: string;
   title: string;
+  highlighted: boolean;
   keyworkText?: string | null;
   brief?: string | null;
   author?: string | null;

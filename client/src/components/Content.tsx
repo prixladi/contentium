@@ -1,5 +1,5 @@
 import { FC } from 'react';
 
-const Content: FC = ({ children }) => <main className="content">{children}</main>;
+const Content: FC = ({ children }) => <div className="content">{children}</div>;
 
 export default Content;

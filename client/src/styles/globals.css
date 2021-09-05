@@ -3,24 +3,76 @@
 @tailwind utilities;
 @layer base {
     h1 {
-        @apply text-5xl;
+        @apply text-4xl;
+        @apply lg:text-5xl;
         @apply font-extrabold;
+        @apply pb-5;
     }
-    .article-card-heading {
-        @apply text-3xl;
-        @apply font-semibold;
-        @apply text-red-500;
+    h2 {
+        @apply text-2xl;
+        @apply lg:text-3xl;
     }
-    .content {
+    h3 {
+        @apply text-xl;
+        @apply lg:text-2xl;
+    }
+    body {
+        @apply dark:bg-gray-800
+    }
+    p {
+        @apply text-lg;
+    }
+    a {
+        @apply text-red-600;
+        @apply dark:text-red-500;
+        @apply underline;
+    }
+    a:hover {
+        @apply cursor-pointer;
+        @apply no-underline;
+    }
+}
+
+@layer components {
+    .centered {
         @apply max-w-xl;
         @apply m-auto;
+    }
+    .content {
+        @apply centered;
         @apply flex-1;
         @apply space-y-8;
-        @apply pt-10;
+        @apply pt-2;
+        @apply md:pt-5;
+        @apply lg:pt-10;
         @apply px-3;
+        @apply relative;
+        @apply min-h-screen;
+        @apply pb-20;
+    }
+    .footer {
+        @apply bottom-0;
+        @apply absolute;
+        @apply h-10;
+    }
+    .article-card-list {
+        @apply flex-1;
+        @apply space-y-8;
+    }
+    .article-card-heading {
+        @apply font-bold;
+    }
+    .link {
+        @apply text-red-600;
+        @apply dark:text-red-500;
     }
     .link:hover {
         @apply cursor-pointer;
         @apply underline;
     }
+    .back-to-link {
+        @apply font-extrabold;
+        @apply pb-5;
+        @apply lg:pb-10;
+    } 
 }

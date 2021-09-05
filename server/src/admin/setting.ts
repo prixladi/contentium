@@ -2,9 +2,12 @@ import { ResourceOptions } from 'adminjs';
 
 const options: ResourceOptions = {
   properties: {
+    id: {
+      isVisible: false,
+    },
     value: {
-      type: 'textarea'
-    }
+      type: 'textarea',
+    },
   },
 } as ResourceOptions;
 
