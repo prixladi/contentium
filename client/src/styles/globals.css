@@ -78,6 +78,7 @@
         @apply lg:prose-lg; 
         @apply prose-red;
         @apply dark:text-white;
+        @apply max-w-none;
     }  
     .markdown h1, 
     .markdown h2, 
@@ -96,6 +97,7 @@
         @apply p-1;
         @apply bg-yellow-50;
         @apply dark:bg-gray-300; 
+        @apply break-normal;
     }
     .markdown pre code {
         @apply dark:bg-transparent; 

@@ -11,6 +11,7 @@ import NextLink from 'next/link';
 import ArticleMetadata from '../../components/ArticleMetadata';
 import { useCodeHighlights } from '../../hooks/useCodeHighlights';
 import ThemeSwitch from '../../components/ThemeSwitch';
+import ScrollToTop from 'react-scroll-up';
 
 type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
   brief?: MDXRemoteSerializeResult | null;
@@ -100,6 +101,10 @@ const Home: NextPage<Props> = ({ article, settings }) => {
         <footer className="footer">
           <Markdown content={settings.footer} />
         </footer>
+
+        <ScrollToTop showUnder={200}>
+          <span>Scroll up☝️</span>
+        </ScrollToTop>
       </Content>
     </div>
   );

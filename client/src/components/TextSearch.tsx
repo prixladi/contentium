@@ -25,7 +25,7 @@ const TextSearch: FC<Props> = ({ searchChanged, count, autosearchTresholdCount }
         }}
       />
 
-      <div className="p-4">
+      <div className="p-4 pr-0">
         <button
           className="bg-blue-500 rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
           onClick={() => searchChanged(search)}
