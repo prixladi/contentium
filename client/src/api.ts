@@ -1,6 +1,11 @@
 import { Article, ArticlePreview, SettingsOptions } from '@shared/api/models';
+import { getSettings, getArticles, getArticle } from './server';
 
 const fetchSettings = async (): Promise<SettingsOptions> => {
+  if (process.env.CONTENTIUM_MODE === 'static') {
+    return getSettings();
+  }
+
   var res = await fetch(createUrl('api/v1/settings'));
 
   if (!res.ok) {
@@ -11,6 +16,10 @@ const fetchSettings = async (): Promise<SettingsOptions> => {
 };
 
 const fetchArticles = async (): Promise<ArticlePreview[]> => {
+  if (process.env.CONTENTIUM_MODE === 'static') {
+    return getArticles();
+  }
+
   var res = await fetch(createUrl('api/v1/articles'));
 
   if (!res.ok) {
@@ -21,6 +30,10 @@ const fetchArticles = async (): Promise<ArticlePreview[]> => {
 };
 
 const fetchArticle = async (id: string): Promise<Article | null> => {
+  if (process.env.CONTENTIUM_MODE === 'static') {
+    return getArticle(id);
+  }
+
   var res = await fetch(createUrl(`api/v1/articles/${id}`));
 
   if (res.status == 404) {

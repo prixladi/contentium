@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: articles.map((x) => ({
       params: { id: x.id },
     })),
-    fallback: process.env.ACTION !== 'export',
+    fallback: process.env.CONTENTIUM_ACTION !== 'export',
   };
 };
 
