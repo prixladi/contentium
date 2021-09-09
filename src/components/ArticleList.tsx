@@ -13,7 +13,7 @@ const articleFilter = (search?: string | null) => (article: ArticleInList) => {
     !loverCaseSearch ||
     article.title.toLowerCase().includes(loverCaseSearch) ||
     article.author?.toLowerCase().includes(loverCaseSearch) ||
-    article.keyworkText?.toLowerCase().includes(loverCaseSearch)
+    article.keywordText?.toLowerCase().includes(loverCaseSearch)
   );
 };
 

@@ -14,7 +14,7 @@ type ArticlePreview = {
   id: string;
   title: string;
   highlighted: boolean;
-  keyworkText?: string | null;
+  keywordText?: string | null;
   brief?: string | null;
   author?: string | null;
   createdAt?: string | null;

@@ -81,7 +81,7 @@ const Home: NextPage<Props> = ({ article, settings }) => {
     <div>
       <Head>
         <title>{article.title}</title>
-        {article.keyworkText && <meta name="description" content={article.keyworkText} />}
+        {article.keywordText && <meta name="description" content={article.keywordText} />}
       </Head>
 
       <Content>
