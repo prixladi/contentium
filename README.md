@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Contentium
 
-## Getting Started
+[![Build and Push base image](https://github.com/prixladi/contentium/actions/workflows/main.yml/badge.svg)](https://github.com/prixladi/contentium/actions/workflows/main.yml)
 
-First, run the development server:
+Contentium is a project you can use for creating sites with semi-static content. The project uses [Next.js](https://nextjs.org/) as the main framework, [mdx](https://mdxjs.com/) to render markdown, [Prism.js](https://prismjs.com/) for code highlights, and [Tailwind CSS](https://tailwindcss.com/) for styles. 
 
-```bash
-npm run dev
-# or
-yarn dev
+Content is generated from `./data` folder that is the root of the project. The folder contains `settings.json` file that contains the basic settings for a site. Example below:
+
+```json
+{
+    "autosearchTresholdCount": "100",
+    "metaDescription": "This is example blog of Contentium project.",
+    "mainFooter": "Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)",
+    "mainDescription": "This is example blog made by **Ladislav Prix**.",
+    "mainTitle": "My Example blog"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then it contains `articles` folder that contains other folders that contain concrete articles. Each article is defined by its own `metadata.json` file. A **Markdown** file with the text itself. **Markdown** file should not contain the main heading because it is taken over from `metadata.json`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```json 
+{
+    "title": "Contentium case study",
+    "keywordText": "markdown",
+    "brief": "**Contentium** is a project.",
+    "createdAt": "2021-09-09",
+    "author": "Ladislav Prix",
+    "readingTimeInMinutes": 5
+}
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contentium modes
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Contentium** can be used in two different modes, those can be run natively or using **Docker** image `shamyr/contentium-base` that is exposed from this project.
 
-## Learn More
+1. **ISR mode** - ISR mode uses **Incremental static regeneration**, this mode is best when you need to change content while the application is running. This can be done with commands `yarn build` and `yarn start`.
+2. **SSG mode** - SSG mode uses **Server side generation**, this mode is best when you don't need to change content *on the fly* and statically generated pages are enough for you. 
 
-To learn more about Next.js, take a look at the following resources:
+### ISR mode
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This mode requires [Node.js](https://nodejs.org/en/) as runtime because it runs **nextjs** server on the backend that performs **Incremental static regeneration**. You can start rhe application in this mode natively using `yarn build` and `yarn start` commands in the project root. Or you can use **Docker** image `shamyr/contentium-base` as you can see below: 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```docker
+FROM shamyr/contentium-base as builder
+RUN yarn build
 
-## Deploy on Vercel
+FROM node:16-alpine3.11 as runner
+WORKDIR /app
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/data ./data
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+EXPOSE 3000
+CMD ["yarn", "start"]
+```
+
+### SSG mode
+
+This mode generates static pages that can be put to *web server*, [Nginx](https://www.nginx.com/) for example, and served from there. You can build pages natively using `yarn export`. Or you can use **Docker** image `shamyr/contentium-base` as you can see below:
+
+```docker
+FROM shamyr/contentium-base as builder
+RUN yarn export
+
+FROM nginx:1.21.1-alpine
+
+COPY --from=builder /app/docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/out /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
+```
