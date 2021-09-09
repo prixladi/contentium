@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  service:
+    image: contentium/static
+    ports:
+      - 80:80
+    build:
+      context: .
+      dockerfile: Dockerfile-static

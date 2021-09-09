@@ -1,9 +1,0 @@
-const path = require('path')
-
-module.exports = {
-  'env': 'docker',  
-  'config': 'sequelizeConfig.json',
-  'migrations-path': path.resolve('dist/app/src/db', 'migrations'),
-  'seeders-path': path.resolve('dist/app/src/db', 'seeders'),
-  'models-path': path.resolve('dist/app/src/db', 'models'),
-}

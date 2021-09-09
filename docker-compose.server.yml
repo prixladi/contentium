@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  service:
+    image: contentium/sure
+    ports:
+      - 80:3000
+    build:
+      context: .
+      dockerfile: Dockerfile-sure
+    volumes:
+      - ./data:/app/data
