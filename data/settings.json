@@ -1,7 +1,7 @@
 {
     "autosearchTresholdCount": "100",
-    "metaDescription": "This is personal blog of Ladislav Prix where you can read about his life hobbies and so on",
+    "metaDescription": "This is example blog of [Contentium project](https://github.com/prixladi/contentium).",
     "mainFooter": "Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)",
-    "mainDescription": "This is personal blog of **Ladislav Prix** where you can read about his life hobbies and so on. This site was created using [Contentium](https://github.com/prixladi/contentium) (*Server side rendered markdown pages with easy content management*).",
-    "mainTitle": "My blog | tech talk"
+    "mainDescription": "This is example blog made by **Ladislav Prix**, this contains only example articles with no concrete theme. This site was created using [Contentium](https://github.com/prixladi/contentium) (*Server side rendered markdown pages with easy content management*).",
+    "mainTitle": "My Example blog"
 }

@@ -1,6 +1,8 @@
 import Prism from 'prismjs';
 import { useEffect } from 'react';
-require('prismjs/components/prism-jsx.min');
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-docker';
 
 const useCodeHighlights = () => {
   useEffect(() => {
