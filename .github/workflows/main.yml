@@ -29,7 +29,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: shamyr/contentium-base
+          file: Dockerfile-base
+          tags: shamyr/contentium-base:latest
 
       -
         name: Image digest
