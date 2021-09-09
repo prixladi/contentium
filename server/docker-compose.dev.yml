@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  postgres:
+    image: postgres:12.2
+    environment:
+      POSTGRES_DB: contentium_dev
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    volumes:
+    - postgresdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:4.18
+    ports:
+      - 8085:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@contentium.io
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: 80
+    volumes:
+    - pgadmindata:/var/lib/pgadmin
+    links:
+    - postgres:pgsql-server
+
+volumes:
+  postgresdata:
+  pgadmindata:

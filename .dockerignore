@@ -1,0 +1,9 @@
+server/node_modules
+server/dist
+client/node_modules
+client/.next
+client/out
+
+README.md
+.github
+.data

@@ -2,7 +2,18 @@
 
 module.exports = {
   up: async (queryInterface) => {
-    console.log("aaa");
+    const exist = await queryInterface.rawSelect(
+      'settings',
+      {
+        where: {},
+      },
+      ['id'],
+    );
+
+    if (exist) {
+      return;
+    }
+
     await queryInterface.bulkInsert(
       'settings',
       [
@@ -20,7 +31,7 @@ module.exports = {
         {
           key: 'mainFooter',
           description: 'Footer on main page (markdown).',
-          value: 'Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)'
+          value: 'Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)',
         },
         {
           key: 'metaDescription',
@@ -31,7 +42,7 @@ module.exports = {
           key: 'autosearchTresholdCount',
           description: 'After exceeding this treshold autosearch on articles stops working and is necessary to click on search button.',
           value: '100',
-        }
+        },
       ],
       {},
     );

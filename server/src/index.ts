@@ -8,8 +8,8 @@ import { apiRouter } from './api';
 
 AdminJS.registerAdapter(AdminJSSequelize);
 const ADMIN = {
-  email: 'admin@example.com',
-  password: 'password',
+  email: process.env.ADMIN_EMAIL || 'admin@contentium.com',
+  password: process.env.ADMIN_PASSWORD || 'Pass@word1',
 };
 
 const run = async () => {
@@ -39,7 +39,7 @@ const run = async () => {
       return null;
     },
     cookieName: 'adminjs',
-    cookiePassword: 'i5h1ZTkAZb',
+    cookiePassword: process.env.COOKIE_PASSWORD || 'i5h1ZTkAZb',
   });
 
   app.set('db', db);

@@ -12,6 +12,7 @@
     //"rootDir": "./src",
     "outDir": "./dist",
     "paths": { "@shared/*": ["../shared/*"], },
+    "allowJs": true,
   },
   "include": [
     "src"

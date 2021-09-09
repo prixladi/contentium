@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "build": "tsc",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/server/src/index.js",
+    "start:docker": "node ./dist/app/src/index.js",
     "format:check": "prettier -l \"**/*.{js,ts}\"",
     "format:fix": "prettier --write \"**/*.{js,ts}\"",
     "code:check": "yarn format:check",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.4.1",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "sequelize-cli": "^6.2.0",

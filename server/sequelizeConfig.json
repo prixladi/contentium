@@ -7,11 +7,11 @@
     "dialect": "postgres",
     "logging": true 
   },
-  "production": {
+  "docker": {
     "username": "admin",
     "password": "secret",
-    "database": "contendium",
-    "host": "localhost",
+    "database": "contentium",
+    "host": "postgres",
     "dialect": "postgres",
     "logging": true 
   }
