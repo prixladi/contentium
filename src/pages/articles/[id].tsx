@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       },
       settings: {
         title: settings.mainTitle,
-        footer: await serialize(settings.mainFooter),
+        footer: await serialize(settings.footer),
       },
     },
     revalidate: 60,
@@ -81,7 +81,8 @@ const Home: NextPage<Props> = ({ article, settings }) => {
     <div>
       <Head>
         <title>{article.title}</title>
-        {article.keywordText && <meta name="description" content={article.keywordText} />}
+        {article.keywordText && <meta name="keywords" content={article.keywordText} />}
+        {article.metaDescription && <meta name="description" content={article.metaDescription} />}
       </Head>
 
       <Content>

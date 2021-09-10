@@ -1,4 +1,4 @@
-import { Article, ArticlePreview, Settings } from './models';
+import { Article, ArticlePreview, Settings, SettingsOptions } from './models';
 import fs from 'fs';
 import path from 'path';
 
@@ -6,15 +6,15 @@ const articlesFolder = './data/articles';
 const metadataFile = './metadata.json';
 const contentFile = './content.md';
 
-const getSettings = async (): Promise<Settings> => {
-  var data = fs.readFileSync('./data/settings.json');
+const getSettings = async (): Promise<SettingsOptions> => {
+  const data = fs.readFileSync('./data/settings.json');
   return JSON.parse(data.toString());
 };
 
 const getArticles = async (): Promise<ArticlePreview[]> => {
-  var data = fs.readdirSync(articlesFolder);
+  const data = fs.readdirSync(articlesFolder);
 
-  var articles: ArticlePreview[] = [];
+  let articles: ArticlePreview[] = [];
 
   data.forEach((x) => {
     if (fs.existsSync(path.join(articlesFolder, x))) {
@@ -25,7 +25,25 @@ const getArticles = async (): Promise<ArticlePreview[]> => {
     }
   });
 
-  return articles;
+  return articles.sort((a1, a2) => {
+    if (a1.highlighted && !a2.highlighted) {
+      return -1;
+    }
+
+    if (a2.highlighted) {
+      return 1;
+    }
+
+    if(!a2.createdAt) {
+      return -1;
+    }
+
+    if(!a1.createdAt) {
+      return 1;
+    }
+
+    return  new Date(a1.createdAt) >  new Date(a2.createdAt) ? -1 : 0;
+  });
 };
 
 const getArticle = async (id: string): Promise<Article | null> => {
@@ -33,10 +51,10 @@ const getArticle = async (id: string): Promise<Article | null> => {
     return null;
   }
 
-  var metadata = fs.readFileSync(path.join(articlesFolder, id, metadataFile));
-  var content = fs.readFileSync(path.join(articlesFolder, id, contentFile));
+  const metadata = fs.readFileSync(path.join(articlesFolder, id, metadataFile));
+  const content = fs.readFileSync(path.join(articlesFolder, id, contentFile));
 
-  var json = JSON.parse(metadata.toString());
+  const json = JSON.parse(metadata.toString());
   json.content = content.toString();
 
   return json;

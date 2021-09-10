@@ -5,8 +5,8 @@ type Settings = {
 type SettingsOptions = {
   mainTitle: string;
   mainDescription: string;
-  mainFooter: string;
   metaDescription: string;
+  footer: string;
   autosearchTresholdCount: string;
 };
 
@@ -15,6 +15,7 @@ type ArticlePreview = {
   title: string;
   highlighted: boolean;
   keywordText?: string | null;
+  metaDescription?: string | null;
   brief?: string | null;
   author?: string | null;
   createdAt?: string | null;

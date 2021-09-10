@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import ArticleCard, { ArticleInList } from './ArticleCard';
 import TextSearch from './TextSearch';
 
@@ -7,23 +7,35 @@ type Props = {
   autosearchTresholdCount: number;
 };
 
-const articleFilter = (search?: string | null) => (article: ArticleInList) => {
-  var loverCaseSearch = search?.toLowerCase();
-  return (
-    !loverCaseSearch ||
-    article.title.toLowerCase().includes(loverCaseSearch) ||
-    article.author?.toLowerCase().includes(loverCaseSearch) ||
-    article.keywordText?.toLowerCase().includes(loverCaseSearch)
-  );
+const articleFilter = (search: string) => (article: ArticleInList) => {
+  var searchParts = search
+    .toLowerCase()
+    .trim()
+    .split(' ')
+    .filter((x) => {
+      return /\S/.test(x);
+    });
+
+  let found = false;
+  searchParts.forEach(part => {
+    found =
+      article.title.toLowerCase().includes(part) ||
+      article.author?.toLowerCase().includes(part) ||
+      article.keywordText?.toLowerCase().includes(part) || found;
+  })
+
+  return found;
 };
 
 const ArticleList: FC<Props> = ({ articles, autosearchTresholdCount }) => {
   const [search, setSearch] = useState(null as string | null);
 
+  const filteredArticles = useMemo(() => (!search ? articles : articles.filter(articleFilter(search))), [search, articles]);
+
   return (
     <div className="article-card-list">
       <TextSearch searchChanged={setSearch} count={articles.length} autosearchTresholdCount={autosearchTresholdCount} />
-      {articles.filter(articleFilter(search)).map((x) => (
+      {filteredArticles.map((x) => (
         <ArticleCard key={x.id} article={x} />
       ))}
     </div>

@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       settings: {
         title: settings.mainTitle,
-        footer: await serialize(settings.mainFooter),
+        footer: await serialize(settings.footer),
       },
     },
     revalidate: 360,

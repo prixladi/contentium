@@ -1,7 +1,7 @@
 {
-    "autosearchTresholdCount": "100",
-    "metaDescription": "This is example blog of [Contentium project](https://github.com/prixladi/contentium).",
-    "mainFooter": "Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)",
-    "mainDescription": "This is example blog made by **Ladislav Prix**, this contains only example articles with no concrete theme. This site was created using [Contentium](https://github.com/prixladi/contentium) (*Server side rendered markdown pages with easy content management*).",
-    "mainTitle": "My Example blog"
+    "metaDescription": "This is an example blog of Contentium project - https://github.com/prixladi/contentium.",
+    "mainTitle": "My Example blog",
+    "mainDescription": "This is an example blog made by **Ladislav Prix**, containing only example articles with no concrete theme. This site was created using [Contentium](https://github.com/prixladi/contentium) (*Server side rendered markdown pages with easy content management*).",
+    "footer": "Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)",
+    "autosearchTresholdCount": "100"
 }

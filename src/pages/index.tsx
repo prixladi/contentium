@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         metaDesctiption: settings.metaDescription,
         autosearchTresholdCount: Number(settings.autosearchTresholdCount),
         description: await serialize(settings.mainDescription),
-        footer: await serialize(settings.mainFooter),
+        footer: await serialize(settings.footer),
       },
     },
     revalidate: 20,
