@@ -72,7 +72,7 @@ services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,
 
 **MediatR** package comes with some predefined behaviors - `RequestPreProcessorBehavior` and `RequestPostProcessorBehavior`. Those are behaviors that cover actions before respectively after the *request* is handled. Those *behaviors* are registered automatically with **MeditR** to *DI* and by default don't do anything because don't have any actions registered. 
 
-You can register this pre/post processor action by implementing `IRequestPreProcessor<TRequest>`/`IRequestPostProcessor<TRequest>` interface. These actions will get automatically registered into *DI* too. Below we can see an example of the `IRequestPreProcessor` that receives an array of validators of concrete *request* implementing an `IValidable` interface a performs validation for each validator. 
+You can register this *pre / post* processor action by implementing `IRequestPreProcessor<TRequest>` / `IRequestPostProcessor<TRequest>` interface. These actions will get automatically registered into *DI* too. Below we can see an example of the `IRequestPreProcessor` that receives an array of validators of concrete *request* implementing an `IValidable` interface a performs validation for each validator. 
 
 ```csharp
 public class RequestValidationPreprocessor<TRequest> 
