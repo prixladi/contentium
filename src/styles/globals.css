@@ -30,9 +30,9 @@
         @apply centered;
         @apply flex-1;
         @apply space-y-8;
-        @apply pt-2;
-        @apply md:pt-5;
-        @apply lg:pt-10;
+        @apply pt-10;
+        @apply md:pt-12;
+        @apply lg:pt-16;
         @apply px-3;
         @apply relative;
         @apply min-h-screen;

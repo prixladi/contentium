@@ -12,7 +12,11 @@ type Props = {
 const ArticleMetadata: FC<Props> = ({ article }) => (
   <div className="article-metadata">
     {article.author ? <div>👤 {article.author} ·</div> : ''}
-    {article.createdAt ? <div>📅 {format(new Date(article.createdAt), 'MMMM dd, yyyy')} ·</div> : ''}
+    {article.createdAt ? (
+      <div>📅 {format(new Date(article.createdAt), 'MMMM dd, yyyy')} ·</div>
+    ) : (
+      ''
+    )}
     {article.readingTimeInMinutes ? <div> 🕒 {article.readingTimeInMinutes} min read ·</div> : ''}
   </div>
 );

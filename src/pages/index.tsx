@@ -27,7 +27,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const articlesInList: ArticleInList[] = [];
 
   for (const article of articles) {
-    articlesInList.push({ ...article, brief: !article.brief ? null : await serialize(article.brief) });
+    articlesInList.push({
+      ...article,
+      brief: !article.brief ? null : await serialize(article.brief),
+    });
   }
 
   return {
@@ -61,7 +64,10 @@ const Home: NextPage<Props> = ({ articles, settings }) => {
         </header>
 
         <main>
-          <ArticleList autosearchTresholdCount={settings.autosearchTresholdCount} articles={articles} />
+          <ArticleList
+            autosearchTresholdCount={settings.autosearchTresholdCount}
+            articles={articles}
+          />
         </main>
 
         <footer className="footer">

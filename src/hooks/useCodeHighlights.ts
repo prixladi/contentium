@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const useCodeHighlights = () => {
   useEffect(() => {
     const Prism = require('prismjs');
-    
+
     require('prismjs/components/prism-json.min');
     require('prismjs/components/prism-jsx.min');
     require('prismjs/components/prism-docker.min');

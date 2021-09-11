@@ -102,10 +102,6 @@ const Home: NextPage<Props> = ({ article, settings }) => {
         <footer className="footer">
           <Markdown content={settings.footer} />
         </footer>
-
-        <ScrollToTop showUnder={200}>
-          <span>Scroll up☝️</span>
-        </ScrollToTop>
       </Content>
     </div>
   );

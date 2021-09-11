@@ -8,7 +8,7 @@ type Props = {
 };
 
 const articleFilter = (search: string) => (article: ArticleInList) => {
-  var searchParts = search
+  const searchParts = search
     .toLowerCase()
     .trim()
     .split(' ')
@@ -17,12 +17,13 @@ const articleFilter = (search: string) => (article: ArticleInList) => {
     });
 
   let found = false;
-  searchParts.forEach(part => {
+  searchParts.forEach((part) => {
     found =
       article.title.toLowerCase().includes(part) ||
       article.author?.toLowerCase().includes(part) ||
-      article.keywordText?.toLowerCase().includes(part) || found;
-  })
+      article.keywordText?.toLowerCase().includes(part) ||
+      found;
+  });
 
   return found;
 };
@@ -30,11 +31,18 @@ const articleFilter = (search: string) => (article: ArticleInList) => {
 const ArticleList: FC<Props> = ({ articles, autosearchTresholdCount }) => {
   const [search, setSearch] = useState(null as string | null);
 
-  const filteredArticles = useMemo(() => (!search ? articles : articles.filter(articleFilter(search))), [search, articles]);
+  const filteredArticles = useMemo(
+    () => (!search ? articles : articles.filter(articleFilter(search))),
+    [search, articles],
+  );
 
   return (
     <div className="article-card-list">
-      <TextSearch searchChanged={setSearch} count={articles.length} autosearchTresholdCount={autosearchTresholdCount} />
+      <TextSearch
+        searchChanged={setSearch}
+        count={articles.length}
+        autosearchTresholdCount={autosearchTresholdCount}
+      />
       {filteredArticles.map((x) => (
         <ArticleCard key={x.id} article={x} />
       ))}

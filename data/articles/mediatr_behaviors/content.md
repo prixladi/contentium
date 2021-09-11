@@ -25,7 +25,7 @@ public class MyBehavior<TRequest, TResponse>
 }
 ```
 
-You can restrict which *requests* the behavior will be applied to. For example, in the segment below this behavior will be applied only to requests that implement the `IInTransaction` interface. So this interface opens transaction for every request that implements the `IInTransaction` interface and then, depending on if an **exception** has been thrown or not, commits or rolls back said transaction. 
+You can restrict which *requests* the behavior will be applied to. For example, in the segment below this behavior will be applied only to requests that implement the `IInTransaction` interface. So this *behavior* opens transaction for every request that implements the `IInTransaction` interface and then, depending on if an **exception** has been thrown or not, commits or rolls back said transaction. 
 
 ```csharp
 public class TransactionBehavior<TRequest, TResponse> 

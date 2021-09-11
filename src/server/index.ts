@@ -18,8 +18,8 @@ const getArticles = async (): Promise<ArticlePreview[]> => {
 
   data.forEach((x) => {
     if (fs.existsSync(path.join(articlesFolder, x))) {
-      var metadata = fs.readFileSync(path.join(articlesFolder, x, metadataFile));
-      var json = JSON.parse(metadata.toString());
+      const metadata = fs.readFileSync(path.join(articlesFolder, x, metadataFile));
+      const json = JSON.parse(metadata.toString());
       json.id = x;
       articles.push(json);
     }
@@ -34,15 +34,15 @@ const getArticles = async (): Promise<ArticlePreview[]> => {
       return 1;
     }
 
-    if(!a2.createdAt) {
+    if (!a2.createdAt) {
       return -1;
     }
 
-    if(!a1.createdAt) {
+    if (!a1.createdAt) {
       return 1;
     }
 
-    return  new Date(a1.createdAt) >  new Date(a2.createdAt) ? -1 : 0;
+    return new Date(a1.createdAt) > new Date(a2.createdAt) ? -1 : 0;
   });
 };
 

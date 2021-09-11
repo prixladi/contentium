@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 const NotFound: React.FC<Props> = ({ settings }) => {
-  var router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     router.push('/');
