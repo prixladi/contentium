@@ -26,10 +26,7 @@ const TextSearch: FC<Props> = ({ searchChanged, count, autosearchTresholdCount }
       />
 
       <div className="text-search-button-wrapper">
-        <button
-          className="text-search-button"
-          onClick={() => searchChanged(search)}
-        >
+        <button className="text-search-button" onClick={() => searchChanged(search)}>
           🔍
         </button>
       </div>
