@@ -2,6 +2,7 @@
     "title": "C# records used as hash keys",
     "metaDescription": "C# 9 records can be used as hash keys.",
     "keywordText": "c# .net tech records",
+    "ogImageExtension": "png",
     "brief": "**C# 9** records can be easily used as hash keys in structures like `IDictionary<TKey, TValue>`.",
     "createdAt": "2021-09-10",
     "author": "Ladislav Prix",

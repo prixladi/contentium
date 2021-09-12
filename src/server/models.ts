@@ -6,6 +6,8 @@ type SettingsOptions = {
   mainTitle: string;
   mainDescription: string;
   metaDescription: string;
+  ogImageExtension?: string;
+  ogUrl?: string;
   footer: string;
   autosearchTresholdCount: string;
 };
@@ -16,6 +18,7 @@ type ArticlePreview = {
   highlighted: boolean;
   keywordText?: string | null;
   metaDescription?: string | null;
+  ogImageExtension?: string | null;
   brief?: string | null;
   author?: string | null;
   createdAt?: string | null;

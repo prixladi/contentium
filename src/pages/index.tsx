@@ -1,5 +1,4 @@
 import type { NextPage, GetStaticProps } from 'next';
-import Head from 'next/head';
 import Content from '../components/Content';
 import { ArticleInList } from '../components/ArticleCard';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -9,9 +8,11 @@ import React from 'react';
 import ArticleList from '../components/ArticleList';
 import Markdown from '../components/Markdown';
 import ThemeSwitch from '../components/ThemeSwitch';
+import SEO, { createSEOProps, SEOProps } from '../components/SEO';
 
 type Props = {
   articles: ArticleInList[];
+  seoProps: SEOProps;
   settings: {
     title: string;
     metaDesctiption: string;
@@ -43,39 +44,34 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
         description: await serialize(settings.mainDescription),
         footer: await serialize(settings.footer),
       },
+      seoProps: createSEOProps(settings),
     },
     revalidate: 20,
   };
 };
 
-const Home: NextPage<Props> = ({ articles, settings }) => {
-  return (
-    <div>
-      <Head>
-        <title>{settings.title}</title>
-        <meta name="description" content={settings.metaDesctiption} />
-      </Head>
+const Home: NextPage<Props> = ({ articles, settings, seoProps }) => (
+  <div>
+    <SEO {...seoProps} />
+    <Content>
+      <header>
+        <ThemeSwitch />
+        <h1>{settings.title}</h1>
+        <Markdown content={settings.description} />
+      </header>
 
-      <Content>
-        <header>
-          <ThemeSwitch />
-          <h1>{settings.title}</h1>
-          <Markdown content={settings.description} />
-        </header>
+      <main>
+        <ArticleList
+          autosearchTresholdCount={settings.autosearchTresholdCount}
+          articles={articles}
+        />
+      </main>
 
-        <main>
-          <ArticleList
-            autosearchTresholdCount={settings.autosearchTresholdCount}
-            articles={articles}
-          />
-        </main>
-
-        <footer className="footer">
-          <Markdown content={settings.footer} />
-        </footer>
-      </Content>
-    </div>
-  );
-};
+      <footer className="footer">
+        <Markdown content={settings.footer} />
+      </footer>
+    </Content>
+  </div>
+);
 
 export default Home;

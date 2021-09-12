@@ -11,7 +11,7 @@ import NextLink from 'next/link';
 import ArticleMetadata from '../../components/ArticleMetadata';
 import { useCodeHighlights } from '../../hooks/useCodeHighlights';
 import ThemeSwitch from '../../components/ThemeSwitch';
-import ScrollToTop from 'react-scroll-up';
+import SEO, { createSEOProps, SEOProps } from '../../components/SEO';
 
 type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
   brief?: MDXRemoteSerializeResult | null;
@@ -20,6 +20,7 @@ type ArticleSerialized = Omit<Omit<ArticlePreview, 'content'>, 'brief'> & {
 
 type Props = {
   article: ArticleSerialized;
+  seoProps: SEOProps;
   settings: {
     title: string;
     footer: MDXRemoteSerializeResult;
@@ -57,12 +58,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         title: settings.mainTitle,
         footer: await serialize(settings.footer),
       },
+      seoProps: createSEOProps(settings, article),
     },
     revalidate: 60,
   };
 };
 
-const Home: NextPage<Props> = ({ article, settings }) => {
+const Home: NextPage<Props> = ({ article, settings, seoProps }) => {
   useCodeHighlights();
 
   if (!article) {
@@ -79,12 +81,7 @@ const Home: NextPage<Props> = ({ article, settings }) => {
 
   return (
     <div>
-      <Head>
-        <title>{article.title}</title>
-        {article.keywordText && <meta name="keywords" content={article.keywordText} />}
-        {article.metaDescription && <meta name="description" content={article.metaDescription} />}
-      </Head>
-
+      <SEO {...seoProps} />
       <Content>
         <header>
           <ThemeSwitch />

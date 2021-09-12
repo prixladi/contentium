@@ -68,8 +68,41 @@
         @apply flex-1;
     } 
     .theme-switcher {
+        @apply h-12;
+        @apply w-12;
         @apply text-4xl;
         @apply float-right;
+    }
+    .text-search-wrapper {
+        @apply flex;
+        @apply items-center;
+        @apply rounded-full;
+    }
+    .text-search-input {
+        @apply rounded-l-full;
+        @apply w-full;
+        @apply py-4;
+        @apply px-6;
+        @apply leading-tight;
+        @apply focus:outline-none;
+        @apply dark:bg-gray-700;
+        @apply bg-gray-300;
+    }
+    .text-search-button {
+        @apply bg-blue-500;
+        @apply rounded-full;
+        @apply p-2;
+        @apply hover:bg-blue-400;
+        @apply focus:outline-none; 
+        @apply w-12;
+        @apply h-12;
+        @apply flex;
+        @apply items-center;
+        @apply justify-center;
+    }
+    .text-search-button-wrapper {
+        @apply p-4;
+        @apply pr-0; 
     }
     .markdown {
         @apply prose;

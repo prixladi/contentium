@@ -2,6 +2,7 @@
     "title": "MediatR behaviors",
     "metaDescription": "MediatR is a popular .NET library for in-process messaging.",
     "keywordText": "mediatr jimmy bogart mediator .net c# tech",
+    "ogImageExtension": "png",
     "brief": "[MediatR](https://github.com/jbogard/MediatR) is a popular **.NET** library for *in-process messaging*. It offers various tools to alter the *behavior* of *requests* with shared logic.",
     "createdAt": "2021-09-10",
     "author": "Ladislav Prix",

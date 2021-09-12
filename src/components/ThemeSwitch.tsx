@@ -5,11 +5,11 @@ import SunImage from './SunImage';
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useTheme();
-  const [local, setLocal] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // This is used so that first render matches server
   useEffect(() => {
-    setLocal(true);
+    setMounted(true);
   }, []);
 
   return (
@@ -18,7 +18,7 @@ const ThemeSwitch = () => {
         className="theme-switcher"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       >
-        {local && theme === 'dark' ? <MoonImage /> : <SunImage />}
+        {mounted ? theme === 'dark' ? <MoonImage /> : <SunImage /> : null}
       </button>
     </div>
   );

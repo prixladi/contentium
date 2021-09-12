@@ -2,6 +2,8 @@
     "metaDescription": "This is an example blog of Contentium project - https://github.com/prixladi/contentium.",
     "mainTitle": "My Example blog",
     "mainDescription": "This is an example blog made by **Ladislav Prix**, containing only example articles with no concrete theme. This site was created using [Contentium](https://github.com/prixladi/contentium) (*Server side rendered markdown pages with easy content management*).",
+    "ogImageExtension": "png",
+    "ogUrl": "https://blog.example.com",
     "footer": "Copyright 2021 © [Ladislav Prix](mailto:contact@ladislavprix.cz)",
-    "autosearchTresholdCount": "100"
+    "autosearchTresholdCount": 100
 }

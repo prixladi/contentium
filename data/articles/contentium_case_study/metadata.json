@@ -2,8 +2,9 @@
     "title": "Contentium case study",
     "metaDescription": "Contentium is a project, build with Next.js, allowing you to easily create a site with static editable content using a markdown source.",
     "keywordText": "contentium nextjs ssg ssr isr static content markdown",
+    "ogImageExtension": "png",
     "brief": "**Contentium** is a project, build with [Next.js](https://nextjs.org/), allowing you to easily create a site with static (*editable*) content using a **markdown** source.",
     "createdAt": "2021-09-09",
     "author": "Ladislav Prix",
-    "readingTimeInMinutes": 3
+    "readingTimeInMinutes": 5
 }

@@ -11,9 +11,9 @@ const TextSearch: FC<Props> = ({ searchChanged, count, autosearchTresholdCount }
   const [search, setSearch] = useState(null as string | null);
 
   return (
-    <div className=" flex items-center rounded-full">
+    <div className="text-search-wrapper">
       <input
-        className="rounded-l-full w-full py-4 px-6 leading-tight focus:outline-none dark:bg-gray-700 bg-gray-300"
+        className="text-search-input"
         id="search"
         type="text"
         placeholder="Search by title, author and keywords ..."
@@ -25,9 +25,9 @@ const TextSearch: FC<Props> = ({ searchChanged, count, autosearchTresholdCount }
         }}
       />
 
-      <div className="p-4 pr-0">
+      <div className="text-search-button-wrapper">
         <button
-          className="bg-blue-500 rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
+          className="text-search-button"
           onClick={() => searchChanged(search)}
         >
           🔍

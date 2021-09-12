@@ -56,6 +56,7 @@ const getArticle = async (id: string): Promise<Article | null> => {
 
   const json = JSON.parse(metadata.toString());
   json.content = content.toString();
+  json.id = id;
 
   return json;
 };
