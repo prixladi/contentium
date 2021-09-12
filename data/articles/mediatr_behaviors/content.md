@@ -1,4 +1,4 @@
-[MediatR](https://github.com/jbogard/MediatR) is **.NET** library for in-process messaging created by [Jimmy Bogart](https://jimmybogard.com/), who is also the author of other popular libraries, such as [AutoMapper](https://github.com/AutoMapper/AutoMapper). 
+[MediatR](https://github.com/jbogard/MediatR) is **.NET** library for in-process messaging created by [Jimmy Bogard](https://jimmybogard.com/), who is also the author of other popular libraries, such as [AutoMapper](https://github.com/AutoMapper/AutoMapper). 
 
 The goal of this article is not to explain what **MediatR** is and how it works, it is best described by Jimmy in [this youtube video](https://www.youtube.com/watch?v=SUiWfhAhgQw&t). So following from now on it is assumed that the reader of this article already knows the basics about **MediatR**. The main goal of this article is to show *pipeline behavior* functionality and how to use it in your project.
 
