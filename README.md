@@ -2,6 +2,8 @@
 
 [![Build and Push base image](https://github.com/prixladi/contentium/actions/workflows/main.yml/badge.svg)](https://github.com/prixladi/contentium/actions/workflows/main.yml)
 
+Example expp is running here - [https://contentium.vercel.app/](https://contentium.vercel.app/).
+
 **Contentium** is a project you can use for creating sites with search engine optimalized, server side rendered/generated content that is written in markdown files. The project uses [Next.js](https://nextjs.org/) as the main framework, [mdx](https://mdxjs.com/) to render markdown, [Prism.js](https://prismjs.com/) for code highlights, and [Tailwind CSS](https://tailwindcss.com/) for styles.
 
 Content is generated from the `./data` folder that is the root of the project. The folder contains `settings.json` file that contains the basic settings for a site.
