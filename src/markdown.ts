@@ -1,3 +1,0 @@
-const componentsMap = {};
-
-export { componentsMap };
